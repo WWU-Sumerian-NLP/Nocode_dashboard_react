@@ -1,4 +1,6 @@
 import React, {useState} from "react"
+import './UploadCSV.css';
+
 import axios from "axios"
 
 const CSVData = (props) => {
@@ -20,7 +22,7 @@ const CSVData = (props) => {
         async function fetchData() {
             console.log("fetching")
             const res = await axios.post(
-                "http://localhost:8000/entity",
+                "http://localhost:8000/relations",
                 formData,
                 'mutlipart/form-data',
             );
@@ -30,8 +32,7 @@ const CSVData = (props) => {
     };
 
     return(
-        <div className="flex flex-col gap-6 justify-center items-center h-screen">
-            <h1> Page Title </h1>
+        <div className="form-box">
             <form onSubmit={handleSubmit}>
                 <input type="file" accept=".csv" onChange={handleChange} />
                 <button type="submit" className="bg-blue-500 px-4 py-2 rounded-md font-semibold">fetch</button>
