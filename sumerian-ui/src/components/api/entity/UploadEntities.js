@@ -1,9 +1,10 @@
 import React, {useEffect, useState} from "react"
+import './UploadEntities.css';
 
 import axios from "axios"
 import { makeStyles } from "@material-ui/styles";
 import { Button } from "@material-ui/core";
-import Controls from "./controls/Controls";
+import Controls from "../../controls/Controls";
 
 const useStyles = makeStyles({
     root: {
@@ -15,18 +16,13 @@ const useStyles = makeStyles({
     input: {
         display: "none"
     },
-    formBox:{
-        margin: "40px",
-        /* padding: -24px; */
-        position: "absolute",
-        right: "0px"
-    },
+
 });
 
 
 
 
-const CSVData = (props) => {
+const UploadEntities = (props) => {
     const {endpoint, setEndpoint} = props;
 
     const [csvFile, setCsvFile] = useState();
@@ -34,7 +30,7 @@ const CSVData = (props) => {
     const classes = useStyles();
 
     if(csvFile) {
-        formData.append("path_to_csv", csvFile);
+        formData.append("path_to_entity_csv", csvFile);
     }
 
     const handleChange = (e) => {
@@ -48,7 +44,7 @@ const CSVData = (props) => {
         async function fetchData() {
             console.log("fetching")
             const res = await axios.post(
-                "http://localhost:8000/insertRelations",
+                "http://localhost:8000/insertEntities",
                 formData,
                 'mutlipart/form-data',
             );
@@ -62,7 +58,7 @@ const CSVData = (props) => {
     }, [setEndpoint])
 
     return(
-        <div className={classes.formBox}>
+        <div className="form-box">
             <form onSubmit={handleSubmit} >
                 <input 
                     type="file" 
@@ -76,11 +72,11 @@ const CSVData = (props) => {
                     Upload
                     </Button>
                 </label>
-                <Controls.Button variant="contained" color="primary" size="large" type="submit" text="Submit CSV">
+                <Controls.Button variant="contained" color="primary" size="large" type="submit" text="Submit">
                 </Controls.Button>
             </form>
         </div>
     )
 }
 
-export default CSVData
+export default UploadEntities

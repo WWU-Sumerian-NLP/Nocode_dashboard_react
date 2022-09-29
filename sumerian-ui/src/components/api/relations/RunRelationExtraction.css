@@ -1,6 +1,7 @@
-.form-box {
+.form {
     margin: 40px;
-    /* padding: -24px; */
+    padding: 0px;
     position: absolute;
     right: 0px;
+    top: 111px;
 }

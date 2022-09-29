@@ -11,11 +11,17 @@ export function useForm(initalValues) {
             [name]: value
         })
     }
+    
+    const resetForm = () => {
+        setValues(initalValues);
+        // setErrors({})
+    }
 
     return {
         values, 
         setValues,
-        handleInputChange
+        handleInputChange,
+        resetForm
     }
 }
 
@@ -30,8 +36,10 @@ const useStyle = makeStyles({
 
 export function Form(props){
     const classes = useStyle();
+    const {children, ...other} = props; 
+
     return (
-        <form className={classes.root}>
+        <form className={classes.root} {...other}>
             {props.children}
         </form>
     )

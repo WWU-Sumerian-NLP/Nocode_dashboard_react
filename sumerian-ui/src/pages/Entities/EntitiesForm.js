@@ -1,12 +1,7 @@
 import React, {useState, useEffect} from 'react'
-import CSVData from '../../components/UploadCSV';
 import Grid from "@material-ui/core/Grid";
-import TextField from "@material-ui/core/TextField";
 import {useForm, Form} from '../../components/useForm';
-import Button from "@material-ui/core/Button";
-import './EntitiesForm.css';
-
-
+import Controls from '../../components/controls/Controls';
 
 const initalValues = {
     id: 0,
@@ -14,25 +9,37 @@ const initalValues = {
     entityTag: '',
 }
 
-export default function EntitiesForm(){
+export default function EntitiesForm(props){
+    const {addOrEdit, recordForEdit} = props
 
     const{
         values, 
         setValues,
-        handleInputChange
+        handleInputChange,
+        resetForm
     } = useForm(initalValues)
 
+    const handleSubmit = e => {
+        e.preventDefault()
+        addOrEdit(values, resetForm);
+    }    
 
     useEffect(() => {
+        if(recordForEdit != null){
+            setValues({
+                ...recordForEdit
+            })
+        }
 
-    }, [])
+    }, [recordForEdit])
 
+    
     return (
         <>
-        <Form>
+        <Form onSubmit={handleSubmit}>
             <Grid container  >            
                 <Grid item xs={6}>
-                    <TextField
+                    <Controls.Input
                         variant="outlined"
                         label="Entity Name"
                         name="entityName"
@@ -41,21 +48,28 @@ export default function EntitiesForm(){
                     />
                 </Grid>
                 <Grid item xs={6}>
-                    <TextField
+                    <Controls.Input
                         variant="outlined"
                         label="Entity Tag"
                         name="entityTag"
                         value={values.entityTag}
+                        onChange={handleInputChange}
                     />
                 </Grid>
-                <div className='material-ui-button'>
-                <Button variant="contained" color="primary" size="large" type="submit">
-                    Submit
-                </Button>
-                </div>
+                <Grid item xs={6}>
+                    <div >
+                        <Controls.Button 
+                            variant="contained" 
+                            // color="primary" 
+                            size="large" 
+                            type="submit" 
+                            text="Submit" 
+                            >
+                            Submit
+                        </Controls.Button>
+                    </div>
+                </Grid>
             </Grid>
-
-            
         </Form>
         </>
     )

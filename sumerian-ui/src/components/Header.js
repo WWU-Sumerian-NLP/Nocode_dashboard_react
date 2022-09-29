@@ -5,6 +5,9 @@ import SettingsIcon from '@mui/icons-material/Settings';
 import SearchIcon from '@mui/icons-material/Search';
 import { makeStyles, useTheme} from '@material-ui/styles';
 import { fontSize } from '@mui/system';
+import MenuIcon from '@mui/icons-material/Menu';
+import { Typography } from '@mui/material';
+import {Link} from "react-router-dom";
 
 
 const useStyles = makeStyles({
@@ -33,12 +36,38 @@ export default function Header() {
             <Toolbar>
                 <Grid container alignItems="center">
                     <Grid item>
-                        <InputBase
+                        {/* <nav
+                            style={{ 
+                                borderBottom: "solid 1px",
+                                paddingBottom: "1rem",
+                            }}
+                        >
+                            <Link to="/entities">Entity</Link> 
+                            <Link to="/relations">Relations</Link> 
+                            <Link to="/relationPatterns">Relation Patterns</Link> 
+                            <Link to="/relationships">Relationships</Link>
+
+                        </nav> */}
+                        {/* <IconButton
+                            size="large"
+                            edge="start"
+                            // color="inherit"
+                            aria-label="menu"
+                            sx={{ mr: 2 }}
+                        >
+                            <MenuIcon/> */}
+                        {/* </IconButton> */}
+                        <Typography
+                            variant="h6"
+                            component="div"
+                            sx={{ flexGrow: 1}}>
+                        </Typography>
+                        {/* <InputBase
                             placeholder="Search"
                             className={classes.searchInput}
                             startAdornment={<SearchIcon fontSize="small" />}
 
-                        />
+                        /> */}
                     </Grid>
 
                     <Grid item sm>

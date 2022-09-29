@@ -1,12 +1,12 @@
 import {React, useEffect, useState} from 'react'
 import PageHeader from '../../components/PageHeader'
-import EntitiesForm from './EntitiesForm'
+import RelationshipForms from './RelationshipForm'
 import PeopleOutlineIcon from '@mui/icons-material/PeopleOutline';
 import { InputAdornment, Paper, TableCell, TableRow, Toolbar } from '@material-ui/core';
 import { makeStyles } from '@material-ui/styles';
 import useTable from '../../components/useTable';
 import { TableBody } from '@mui/material';
-import * as entityService from "../../service/entitiesService";
+import * as relationshipService from "../../service/relationshipService";
 import AddIcon from '@material-ui/icons/Add';
 import Popup from '../../components/Popup';
 import EditOutlinedIcon from '@material-ui/icons/EditOutlined';
@@ -15,8 +15,9 @@ import Notification from "../../components/Notification";
 import ConfirmDialog from '../../components/ConfirmDialogue';
 import { Search } from "@material-ui/icons";
 import Controls from '../../components/controls/Controls';
-import RunEntityExtraction from '../../components/api/entity/RunEntityExtraction';
-import UploadEntities from '../../components/api/entity/UploadEntities';
+import UploadRelationship from '../../components/api/relationship/UploadRelationships';
+import RunBuildRelationshipGraph from '../../components/api/relationship/RunBuildRelationshipGraph';
+import RunPipeline from '../../components/api/relationship/RunPipeline';
 import axios from 'axios';
 
 const useStyles = makeStyles({
@@ -30,19 +31,25 @@ const useStyles = makeStyles({
     },
     newButton: {
         position: 'absolute',
-        right: '0px'
+        right: '24px',
     },
 })
 
 const headCells = [
-    {id: 'entityName', label: "Entity Name"},
-    {id: "entityTag", label: "Entity Tag"}
+    {id: 'tabletNum', label: "Tablet Num"},
+    {id: "relationType", label: "Relation Type"},
+    {id: "subject", label: "Subject"},
+    {id: "object", label: "Object"},
+    {id: "providence", label: "Providence"},
+    {id: "period", label: "Period"},
+    {id: "datesReferenced", label: "DatesReferenced"},
+
 ]
 
-export default function Entities() {
+export default function Relationships() {
     const classes = useStyles();
     const [recordForEdit, setRecordForEdit] = useState(null)
-    const [records, setRecords] = useState(entityService.getAllEntity())
+    const [records, setRecords] = useState(relationshipService.getAllRelationship())
     const [filterFn, setFilterFn] = useState({ fn: items => { return items; } })
     const [openPopup, setOpenPopup] = useState(false)
     const [notify, setNotify] = useState({ isOpen: false, message: '', type: ''})
@@ -62,23 +69,22 @@ export default function Entities() {
                 if(target.value === "") {
                     return items;
                 } else {
-                    return items.filter(x => x.entityName.toLowerCase().includes(target.value))
+                    return items.filter(x => x.tabletNum.toLowerCase().includes(target.value))
                 }
             }
         })
     }
 
-    const addOrEdit = (entity, resetForm) => {
-        console.log("in entity.js", entity)
-        if(entity.id === 0){
-            entityService.insertEntity(entity)
+    const addOrEdit = (relationship, resetForm) => {
+        if(relationship.id === 0){
+            relationshipService.insertRelationship(relationship)
         } else {
-            entityService.updateEntity(entity)
+            relationshipService.updateRelationship(relationship)
         }
         resetForm()
         setRecordForEdit(null)
         setOpenPopup(false)
-        setRecords(entityService.getAllEntity())
+        setRecords(relationshipService.getAllRelationship())
         setNotify({
             isOpen: true,
             message: 'Submitted Successfully',
@@ -97,38 +103,39 @@ export default function Entities() {
             ...confirmDialog,
             isOpen: false
         })
-        entityService.deleteEntity(id);
-        setRecords(entityService.getAllEntity());
+        relationshipService.deleteRelationship(id);
+        setRecords(relationshipService.getAllRelationship());
         setNotify({
             isOpen: true,
             message: 'Deleted Succesfully',
             type: 'error'
         })
     }
-    const fetchEntities = async () => {
-        axios.post("http://localhost:8000/getEntities")
+
+    const fetchRelationships = async () => {
+        axios.post("http://localhost:8000/GetRelationships")
         .then(response => {
             setRecords(response["data"])
         })
     }
-
     useEffect(() => {
-        fetchEntities();
+        fetchRelationships();
     }, [])
 
     return(
         <>    
-        <UploadEntities/>
-        <RunEntityExtraction/>
+        <RunPipeline/>
+        <UploadRelationship/>
+
         <PageHeader
-        title="New Entity"
-        subTitle="View and upload entity data"
+        title="New Relationships"
+        subTitle="View and upload neo4j relationship data"
         icon={<PeopleOutlineIcon fontSize='large'/>}/>
         <Paper className={classes.pageContent}>
             <Toolbar>
                 <Controls.Input
                     variant="outlined"
-                    label="Search Entities"
+                    label="Search Neo4j Relationships"
                     name={classes.searchInput}
                     InputProps={{
                         startAdornment: (<InputAdornment position="start">
@@ -151,8 +158,13 @@ export default function Entities() {
                     {
                      recordsAfterPagingAndSorting().map(item =>
                         (<TableRow key={item.id}>
-                            <TableCell>{item.entityName}</TableCell>
-                            <TableCell>{item.entityTag}</TableCell>
+                            <TableCell>{item.tabletNum}</TableCell>
+                            <TableCell>{item.relationType}</TableCell>
+                            <TableCell>{item.subject}</TableCell>
+                            <TableCell>{item.object}</TableCell>
+                            <TableCell>{item.providence}</TableCell>
+                            <TableCell>{item.period}</TableCell>
+                            <TableCell>{item.datesReferenced}</TableCell>
                             <TableCell>
                                 <Controls.ActionButton
                                     onClick={() => {openInPopup(item) }}>
@@ -178,16 +190,15 @@ export default function Entities() {
             <TblPagination/>
         </Paper>
         <Popup
-            title="Entities Form"
+            title="Relations Form"
             openPopup={openPopup}
             setOpenPopup={setOpenPopup}
         >
-            <EntitiesForm
+            <RelationshipForms
                 recordForEdit={recordForEdit}
                 addOrEdit={addOrEdit}
             />
         </Popup>
-
         <Notification
             notify={notify}
             setNotify={setNotify}
@@ -200,3 +211,5 @@ export default function Entities() {
         </>
     )
 }
+
+
