@@ -22,16 +22,16 @@ import axios from 'axios';
 const useStyles = makeStyles({
     pageContent: {
         margin: '40px',
-        // padding: '24px'
+        padding: '24px'
     },
 
     searchInput: {
-        width: '100%'
+        width: '75%'
     },
     newButton: {
         position: 'absolute',
-        right: '0px'
-    },
+        right: '-180px',
+    }
 })
 
 const headCells = [
@@ -129,7 +129,7 @@ export default function Entities() {
                 <Controls.Input
                     variant="outlined"
                     label="Search Entities"
-                    name={classes.searchInput}
+                    className={classes.searchInput}
                     InputProps={{
                         startAdornment: (<InputAdornment position="start">
                             <Search/>
@@ -142,8 +142,8 @@ export default function Entities() {
                     variant="outlined"
                     startIcon={<AddIcon/>}
                     className={classes.newButton}
-                    onClick={ () => {setOpenPopup(true); setRecordForEdit(null); }}
-                />
+                    onClick={() => { setOpenPopup(true); setRecordForEdit(null); }}
+                    />
             </Toolbar>
             <TblContainer>
                 <TblHead/>

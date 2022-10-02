@@ -23,15 +23,15 @@ import axios from 'axios';
 const useStyles = makeStyles({
     pageContent: {
         margin: '40px',
-        // padding: '24px'
+        padding: '24px'
     },
 
     searchInput: {
-        width: '100%'
+        width: '75%'
     },
     newButton: {
         position: 'absolute',
-        right: '24px',
+        right: '-180px',
     },
 })
 
@@ -136,7 +136,7 @@ export default function Relationships() {
                 <Controls.Input
                     variant="outlined"
                     label="Search Neo4j Relationships"
-                    name={classes.searchInput}
+                    className={classes.searchInput}
                     InputProps={{
                         startAdornment: (<InputAdornment position="start">
                             <Search/>

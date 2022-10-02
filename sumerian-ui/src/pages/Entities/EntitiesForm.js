@@ -40,7 +40,6 @@ export default function EntitiesForm(props){
             <Grid container  >            
                 <Grid item xs={6}>
                     <Controls.Input
-                        variant="outlined"
                         label="Entity Name"
                         name="entityName"
                         value={values.entityName}
@@ -49,7 +48,6 @@ export default function EntitiesForm(props){
                 </Grid>
                 <Grid item xs={6}>
                     <Controls.Input
-                        variant="outlined"
                         label="Entity Tag"
                         name="entityTag"
                         value={values.entityTag}
@@ -59,13 +57,9 @@ export default function EntitiesForm(props){
                 <Grid item xs={6}>
                     <div >
                         <Controls.Button 
-                            variant="contained" 
-                            // color="primary" 
-                            size="large" 
                             type="submit" 
                             text="Submit" 
                             >
-                            Submit
                         </Controls.Button>
                     </div>
                 </Grid>

@@ -8,8 +8,8 @@ const useStyles = makeStyles({
         marginTop: "24px",
         '& thead th': {
             fontWeight: '600',
-            //color
-            //background color
+            color: "#33396",
+            backgroundColor: "#3c44b126"
         },
         '& tbody td': {
             fontWeight: '300',

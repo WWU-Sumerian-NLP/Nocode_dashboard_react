@@ -22,15 +22,15 @@ import axios from 'axios';
 const useStyles = makeStyles({
     pageContent: {
         margin: '40px',
-        // padding: '24px'
+        padding: '24px'
     },
 
     searchInput: {
-        width: '100%'
+        width: '75%'
     },
     newButton: {
         position: 'absolute',
-        right: '24px',
+        right: '-180px',
     },
 })
 
@@ -71,6 +71,7 @@ export default function Relations() {
         })
     }
 
+    //TODO - Switch from local storage to API call to database
     const addOrEdit = (relation, resetForm) => {
         if(relation.id === 0){
             relationService.insertRelation(relation)
@@ -117,7 +118,7 @@ export default function Relations() {
         })
     }
 
-    //TODO impelement
+    //TODO impelement - Switch from local storage to database
     const deleteRelation = async (id) => {
         axios.post("http://localhost:8000/deleteRelation/id")
     }
@@ -143,7 +144,7 @@ export default function Relations() {
                 <Controls.Input
                     variant="outlined"
                     label="Search Relations"
-                    name={classes.searchInput}
+                    className={classes.searchInput}
                     InputProps={{
                         startAdornment: (<InputAdornment position="start">
                             <Search/>
@@ -152,11 +153,11 @@ export default function Relations() {
                     onChange={handleSearch}
                 />
                 <Controls.Button
-                    text="add new"
-                    variant="outlined"
-                    startIcon={<AddIcon/>}
-                    className={classes.newButton}
-                    onClick={ () => {setOpenPopup(true); setRecordForEdit(null); }}
+                        text="Add New"
+                        variant="outlined"
+                        startIcon={<AddIcon />}
+                        className={classes.newButton}
+                        onClick={() => { setOpenPopup(true); setRecordForEdit(null); }}
                 />
             </Toolbar>
             <TblContainer>
@@ -172,11 +173,13 @@ export default function Relations() {
                             <TableCell>{item.tags}</TableCell>
                             <TableCell>
                                 <Controls.ActionButton
+                                    color="primary"
                                     onClick={() => {openInPopup(item) }}>
                                    <EditOutlinedIcon fontSize="small" />
                                 </Controls.ActionButton>
 
                                 <Controls.ActionButton
+                                    color="secondary"
                                     onClick={() => {
                                         setConfirmDialog({
                                             isOpen: true,

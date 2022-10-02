@@ -7,18 +7,18 @@ const useStyles = makeStyles({
         minWidth: 0,
         margin: "4px"
     },
-    // secondary: {
-    //     backgroundColor: theme.palette.secondary.light,
-    //     '& .MuiButton-label': {
-    //         color: theme.palette.secondary.main,
-    //     }
-    // },
-    // primary: {
-    //     backgroundColor: theme.palette.primary.light,
-    //     '& .MuiButton-label': {
-    //         color: theme.palette.primary.main,
-    //     }
-    // },
+    secondary: {
+        backgroundColor: "#f8324526",
+        '& .MuiButton-label': {
+            color: "#f83245",
+        }
+    },
+    primary: {
+        backgroundColor: "#3c44b126",
+        '& .MuiButton-label': {
+            color: "#33396",
+        }
+    },
 })
 
 export default function ActionButton(props) {
@@ -27,7 +27,7 @@ export default function ActionButton(props) {
 
     return (
         <Button
-            className={classes.root}
+            className={`{$classes.root} ${classes[color]}`}
             onClick={onClick}>
             {children}
             </Button>

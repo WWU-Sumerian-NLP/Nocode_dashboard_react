@@ -41,7 +41,6 @@ export default function RelationForms(props){
             <Grid container  >            
                 <Grid item xs={6}>
                     <Controls.Input
-                        variant="outlined"
                         label="Relation Type"
                         name="relationType"
                         value={values.relationType}
@@ -50,7 +49,6 @@ export default function RelationForms(props){
                 </Grid>
                 <Grid item xs={6}>
                     <Controls.Input
-                        variant="outlined"
                         label="Object Tag"
                         name="objectTag"
                         value={values.objectTag}
@@ -68,7 +66,6 @@ export default function RelationForms(props){
                 </Grid>
                 <Grid item xs={6}>
                     <Controls.Input
-                        variant="outlined"
                         label="Regex Rules"
                         name="regexRules"
                         value={values.regexRules}
@@ -77,7 +74,6 @@ export default function RelationForms(props){
                 </Grid>
                 <Grid item xs={6}>
                     <Controls.Input
-                        variant="outlined"
                         label="Tags"
                         name="tags"
                         value={values.tags}
@@ -86,8 +82,7 @@ export default function RelationForms(props){
                 </Grid>
                 <Grid item xs={6}>
                     <div className='material-ui-button'>
-                        <Controls.Button text="Submit" variant="contained" color="primary" size="large" type="submit">
-                            Submit
+                        <Controls.Button text="Submit"  type="submit">
                         </Controls.Button>
                     </div>
                 </Grid>

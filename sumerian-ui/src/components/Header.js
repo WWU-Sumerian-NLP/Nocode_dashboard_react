@@ -12,15 +12,17 @@ import {Link} from "react-router-dom";
 
 const useStyles = makeStyles({
     root: {
-        backgroundColor: '#fff'
+        backgroundColor: '#fff',
+        // transform:'translateZ(0)'
     },
 
+    // Potentially delete this SearchInput
     searchInput: {
         opacity: '0.6',
-        padding: '0px 8px',
+        padding: `0px 8px`,
         fontSize: '0.8rem',
         '&:hover': {
-            backgroundColor: 'f2f2f2'
+            backgroundColor: '#f2f2f2'
         },
         '& .MuiSvgIcon-root': {
             marginRight: '8px'
@@ -32,36 +34,10 @@ export default function Header() {
     const classes = useStyles();
 
     return (
-        <AppBar position="static" class={classes.root}>
+        <AppBar position="static" className={classes.root}>
             <Toolbar>
                 <Grid container alignItems="center">
                     <Grid item>
-                        {/* <nav
-                            style={{ 
-                                borderBottom: "solid 1px",
-                                paddingBottom: "1rem",
-                            }}
-                        >
-                            <Link to="/entities">Entity</Link> 
-                            <Link to="/relations">Relations</Link> 
-                            <Link to="/relationPatterns">Relation Patterns</Link> 
-                            <Link to="/relationships">Relationships</Link>
-
-                        </nav> */}
-                        {/* <IconButton
-                            size="large"
-                            edge="start"
-                            // color="inherit"
-                            aria-label="menu"
-                            sx={{ mr: 2 }}
-                        >
-                            <MenuIcon/> */}
-                        {/* </IconButton> */}
-                        <Typography
-                            variant="h6"
-                            component="div"
-                            sx={{ flexGrow: 1}}>
-                        </Typography>
                         {/* <InputBase
                             placeholder="Search"
                             className={classes.searchInput}
@@ -70,9 +46,7 @@ export default function Header() {
                         /> */}
                     </Grid>
 
-                    <Grid item sm>
-                    </Grid>
-
+                    <Grid item sm> </Grid>
                     <Grid item>
                         <IconButton>
                             <Badge color="secondary">
@@ -80,7 +54,6 @@ export default function Header() {
                             </Badge>
                         </IconButton>
                     </Grid>
-
                 </Grid>
             </Toolbar>
         </AppBar>

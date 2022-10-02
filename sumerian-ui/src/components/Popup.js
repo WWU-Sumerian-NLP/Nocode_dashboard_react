@@ -29,14 +29,13 @@ export default function Popup(props) {
                     </Typography>
                     <Controls.ActionButton
                         onClick={()=>{setOpenPopup(false)}}>
-                            <CloseIcon/>
+                        <CloseIcon/>
                     </Controls.ActionButton>
                 </div>
             </DialogTitle>
             <DialogContent dividers>
                 {children}
             </DialogContent>
-
         </Dialog>
     )
 }

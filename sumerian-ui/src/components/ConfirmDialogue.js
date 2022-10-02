@@ -21,10 +21,10 @@ const useStyles = makeStyles({
         justifyContent: 'center'
     },
     titleIcon: {
-        // backgroundColor: theme.palette.secondary.light,
-        // color: theme.palette.secondary.main,
+        backgroundColor: '#f8324526',
+        color: '#f83245',
         '&:hover': {
-            // backgroundColor: theme.palette.secondary.light,
+            backgroundColor: '#f8324526',
             cursor: 'default'
         },
         '& .MuiSvgIcon-root': {
@@ -34,8 +34,6 @@ const useStyles = makeStyles({
 })
 
 export default function ConfirmDialog(props) {
-    console.log("Confirm Dialog")
-
     const {confirmDialog, setConfirmDialog} = props;
     const classes = useStyles()
 
@@ -58,11 +56,11 @@ export default function ConfirmDialog(props) {
                 <Controls.Button
                     text="No"
                     onClick={() => setConfirmDialog({ ...confirmDialog, isOpen: false })} 
-                >No</Controls.Button>
+                ></Controls.Button>
                 <Controls.Button
                     text="Yes"
                     onClick={confirmDialog.onConfirm}
-                >Yes</Controls.Button>
+                ></Controls.Button>
             </DialogActions>
         </Dialog>
     )

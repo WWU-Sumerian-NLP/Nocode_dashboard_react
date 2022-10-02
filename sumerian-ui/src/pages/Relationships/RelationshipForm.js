@@ -44,7 +44,6 @@ export default function RelationshipForms(props){
             <Grid container  >            
                 <Grid item xs={6}>
                     <Controls.Input
-                        variant="outlined"
                         label="Tablet Num"
                         name="tabletNum"
                         value={values.tabletNum}
@@ -53,7 +52,6 @@ export default function RelationshipForms(props){
                 </Grid>
                 <Grid item xs={6}>
                     <Controls.Input
-                        variant="outlined"
                         label="Relation Type"
                         name="relationType"
                         value={values.relationType}
@@ -62,7 +60,6 @@ export default function RelationshipForms(props){
                 </Grid>
                 <Grid item xs={6}>
                     <Controls.Input
-                        variant="outlined"
                         label="Subject"
                         name="subject"
                         value={values.subject}
@@ -71,7 +68,6 @@ export default function RelationshipForms(props){
                 </Grid>
                 <Grid item xs={6}>
                     <Controls.Input
-                        variant="outlined"
                         label="Object"
                         name="object"
                         value={values.object}
@@ -89,7 +85,6 @@ export default function RelationshipForms(props){
                 </Grid>
                 <Grid item xs={6}>
                     <Controls.Input
-                        variant="outlined"
                         label="Period"
                         name="period"
                         value={values.period}
@@ -97,7 +92,6 @@ export default function RelationshipForms(props){
                     />
                 </Grid>                <Grid item xs={6}>
                     <Controls.Input
-                        variant="outlined"
                         label="Dates Referenced"
                         name="datesReferenced"
                         value={values.datesReferenced}
@@ -106,8 +100,7 @@ export default function RelationshipForms(props){
                 </Grid>
                 <Grid item xs={6}>
                     <div className='material-ui-button'>
-                        <Controls.Button text="Submit" variant="contained" color="primary" size="large" type="submit">
-                            Submit
+                        <Controls.Button text="Submit" type="submit">
                         </Controls.Button>
                     </div>
                 </Grid>
