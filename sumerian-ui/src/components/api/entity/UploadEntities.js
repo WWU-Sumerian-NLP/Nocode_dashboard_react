@@ -62,7 +62,7 @@ const UploadEntities = (props) => {
             <form onSubmit={handleSubmit} >
                 <input 
                     type="file" 
-                    accept=".tsv" 
+                    accept=".tsv, .csv" 
                     onChange={handleChange}  
                     className={classes.input}
                     id="raised-button-file"

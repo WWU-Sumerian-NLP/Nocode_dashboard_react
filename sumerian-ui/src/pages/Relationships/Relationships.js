@@ -113,7 +113,7 @@ export default function Relationships() {
     }
 
     const fetchRelationships = async () => {
-        axios.post("http://localhost:8000/GetRelationships")
+        axios.post("http://localhost:8000/getRelationships")
         .then(response => {
             setRecords(response["data"])
         })
