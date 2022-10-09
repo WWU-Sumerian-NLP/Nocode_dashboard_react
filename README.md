@@ -1,34 +1,20 @@
-# react-sumerian-UI
+# Nocode_dashboard_react
 
-This is a library to process Sumerian Tablets and perform NLP tasks
+To allow use of our tooling, we built out an intuitive dashboard which lets users view, modify and upload their data 
 
 ## Description
 
-An in-depth paragraph about your project and overview of use.
+For now, we have tabs for entity extraction, relation extraction, and neo4j relationships. Very soon, we will allow users the ability to access their own sumerian tablets and a host of other downstream tasks. 
 
-## Getting Started
+This dashboard is designed to be easily extendable. Supporting a new tab for a service requires a few easy steps
+Create a new form in our frontend
+Add an entry in our servers database </br>
 
-### Dependencies
+![dashboard](https://github.com/WWU-Sumerian-NLP/images/blob/master/dashboard.png) </br>
 
-* Describe any prerequisites, libraries, OS version, etc., needed before installing program.
-* ex. Windows 10
-
-### Installing
-
-* How/where to download your program
-* Any modifications needed to be made to files/folders
-
-### Executing program
-
-* How to run the program
-* Step-by-step bullets
-```
-code blocks for commands
-```
 
 ## Authors
-
-Contributors names and contact info
-
 Hansel Guzman-Soto (https://www.linkedin.com/in/hansel-guzman-soto/)
+
+
 
