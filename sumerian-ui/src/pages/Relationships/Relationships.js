@@ -49,7 +49,7 @@ const headCells = [
 export default function Relationships() {
     const classes = useStyles();
     const [recordForEdit, setRecordForEdit] = useState(null)
-    const [records, setRecords] = useState(relationshipService.getAllRelationship())
+    const [records, setRecords] = useState([])
     const [filterFn, setFilterFn] = useState({ fn: items => { return items; } })
     const [openPopup, setOpenPopup] = useState(false)
     const [notify, setNotify] = useState({ isOpen: false, message: '', type: ''})
